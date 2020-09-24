@@ -1,0 +1,17 @@
+{% extends "projects/layout.html" %}
+{% block content %}
+    <main role="main">
+    {% load static %}
+    <section class="jumbotron text-center">
+        <div class="container">
+          <br/>
+          <img src="{{ projects.image.url }}" width=800></img>
+          <h1>{{ projects.title }}</h1>
+          <p class="lead text-muted">{{ projects.content }}</p>
+          <p>
+            <a href="{% url 'home' %}" class="btn btn-primary my-2">Back to Home</a>
+          </p>
+        </div>
+    </section>
+    </main>
+{% endblock %}

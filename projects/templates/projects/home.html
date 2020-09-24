@@ -1,0 +1,50 @@
+{% extends "projects/layout.html" %}
+{% block content %}
+    <main role="main">
+    {% load static %}
+    <section class="jumbotron jumbotron-fluid text-center">
+        <div class="container">
+            <img class="d-block mx-auto mb-4 rounded mx-auto d-block" src="{% static 'sample.jpg' %}" alt="" width="150" height="150">
+            <h1>MY NAME</h1>
+            <p class="lead text-muted">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </p>
+        </div>
+    </section>
+    <div class="album py-5 bg-light">
+        <div class="d-flex justify-content-center">
+            <p><h2>Projects</h2></p>
+        </div>
+        <div class="container">
+            <div class="row mb-2">
+                {% for project in projects.all %}
+                <div class="col-md-6">
+                  <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                      <strong class="d-inline-block mb-2 text-primary">{{ project.technologies }}</strong>
+                      <h3 class="mb-0">{{ project.title }}</h3>
+                      <div class="mb-1 text-muted">{{ project.dateofProject }}</div>
+                      <p class="card-text mb-auto">{{ job.summary }}</p>
+                      <a href="{% url 'detail' project.id %}" class="stretched-link">Continue reading</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img src="{{ project.image.url }}" class="float-right" alt="..." height=200 width=200></img>
+                    </div>
+                  </div>
+                </div>
+                {% endfor %}
+            </div> 
+        </div>
+    </div>
+    <div class="album py-5 bg-light">
+        <div class="d-flex justify-content-center">
+            <p><h2>Skills</h2></p>
+        </div>
+        <div class="container">
+            {% for skill in skills.all %}
+            <div class="progress" style="height: 30px;">
+                <div class="progress-bar bg-secondary" role="progressbar" style="width:{{ skill.familiarity }}%" aria-valuenow="{{ skill.familiarity }}" aria-valuemin="0" aria-valuemax="100">{{ skill.skill }}</div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    </main>
+{% endblock %}
